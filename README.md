@@ -10,7 +10,12 @@
 - **匯出**：將編曲匯出為 MIDI 或 WAV；已載入的 MusicXML 可重新下載。
 - **MP3 播放器**：拖放或選擇本機音訊檔案，使用播放清單、頻譜、隨機與循環播放、速度及音量控制。播放器頁面提供兩首需要網路的示範音訊。
 
-## 開始使用
+## 兩個版本
+
+- **儲存庫根目錄**：目前發布至 Sites 的靜態版本，包含 MP3 播放器，不含可用的 OMR 後端。
+- **[local-omr/](local-omr/)**：先前提供的 v2 完整本機安裝包，包含 Python 主程式、Windows／Linux 啟動腳本及可選的 Audiveris 橋接；這是較早的獨立版本，沒有後來加入的 MP3 播放器。
+
+## 靜態版：開始使用
 
 需要支援 Web Audio 的現代瀏覽器，例如 Windows 或 Linux 上的 Chrome 或 Edge，以及 Python 3（用於啟動本機靜態伺服器）。
 
@@ -33,6 +38,12 @@
 
 按 `Ctrl+C` 可停止伺服器。網站也可部署到支援靜態 HTML 的主機，所有檔案須維持相同的相對位置。
 
+## 本機 OMR 版：啟動
+
+進入 `local-omr/` 後，Windows 可執行 `run-windows.bat`，Linux 可執行 `./run-linux.sh`；也可使用 Python 3 執行 `launch.py`。開啟 `http://127.0.0.1:5188/`。此版本支援透過本機後端匯入 `.mxl`；辨識照片或 PDF 需要另外安裝 Audiveris，請參考 [本機版說明](local-omr/README.md) 和 [OMR 設定](local-omr/OMR-SETUP.md)。照片／PDF 的實際辨識尚未完成端到端驗收。
+
+本機版預設監聽所有網路介面，且沒有登入驗證，不應直接開放至網際網路。只供本機使用時，啟動前請將環境變數 `SOUNDPATH_HOST` 設為 `127.0.0.1`。
+
 ## 使用與限制
 
 - 首頁的「試播原創雙手示範」可用來試用讀譜與演奏；可匯入自己的 MusicXML。壓縮的 `.mxl` 不受此靜態版本支援。
@@ -49,5 +60,6 @@ index.html       編曲器、作品管理及 MusicXML 入口
 score.js         MusicXML 解析、播放和預覽
 player.html      MP3 播放器
 OMR-SETUP.html   光學樂譜辨識後端說明
+local-omr/       原始本機版、Python 後端及啟動腳本
 README.md        本文件
 ```
